@@ -1,1 +1,12 @@
-There are currently no jobs
+<% if @jobs %>
+  <ul>
+    <% @jobs.each do |job| %>
+      <li>
+        <h2><%= link_to job.role, job.url %></h2>
+        <h4><%= job.company %></h4>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  There are currently no jobs
+<% end %>
