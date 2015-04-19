@@ -1,0 +1,28 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ecf0f1;
+}
+
+h1#logo {
+  text-align: center;
+  font-size: 2em;
+  color: #c0392b;
+}
+
+section.container {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+ul.all-jobs {
+  list-style-type: none;
+}
+
+li.job-listing {
+  background-color: white;
+  padding: 1em;
+  border-radius: 4px;
+  margin-bottom: 1em;
+}

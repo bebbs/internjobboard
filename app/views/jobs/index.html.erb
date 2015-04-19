@@ -1,7 +1,7 @@
 <% if @jobs %>
-  <ul>
+  <ul class='all-jobs'>
     <% @jobs.each do |job| %>
-      <li>
+      <li class='job-listing'>
         <h2><%= link_to job.role, job.url %></h2>
         <h4><%= job.company %></h4>
       </li>
