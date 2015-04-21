@@ -1,34 +1,26 @@
 require 'mechanize'
-
-	mechanize = Mechanize.new
-
-page = mechanize.get('http://workinstartups.com/job-board/jobs/interns/')
+require 'uri'
 
 # page.links.each do |link|
 #   puts link.href
 # end
 
-# page.search("ul.job-list li").each do |x|
-#   puts x.to_s[/at\s(.*?)\sin/m, 1]
-# end
-
 def pull_data
 	mechanize = Mechanize.new
-	job_array = []
+
 	page = mechanize.get('http://workinstartups.com/job-board/jobs/interns/')
 	page.search("ul.job-list li").each do |x|
-  	job_array << x.to_s[/at\s(.*?)\sin/m, 1]
-	end
-	return job_array
+    str = x.to_s
+    job = Job.new
+
+    job.company = str[/at\s(.*?)\sin/m, 1]
+    job.url = URI.extract(str).first
+    job.role = x.at_css('a').text
+
+    job.save
+  end
 end
 
-def filter_crap
-	filtered = pull_data.select! { |title| title.kind_of? String }
-	filtered = filtered.delete_if {|title| title.include?("<")}
-	filtered.each do |x|
-		puts x
-		puts x.class
-	end
-end
-
-pull_data
+# def filter_crap
+# 	filtered = pull_data.select! { |title| (title.kind_of? String) && (!title.include?("<")) }
+# end
